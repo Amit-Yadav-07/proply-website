@@ -16,8 +16,8 @@ const Home = () => {
             <EnhancedTwoSectionNavbar />
             <Carousel />
             <TabbedCardList />
-            <ThreeDImageListSlider />
             <ServicesCardList />
+            <ThreeDImageListSlider />
             <Testimonials />
             <Footer />
 

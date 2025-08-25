@@ -1,6 +1,7 @@
 // ThreeDImageListSlider.jsx
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom'
 
 const ThreeDImageListSlider = () => {
   // Sample image data
@@ -9,43 +10,52 @@ const ThreeDImageListSlider = () => {
       id: 1,
       src: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=800&fit=crop",
       alt: "AI Security Dashboard",
-      title: "AI-Powered Security"
+      title: "AI-Powered Security",
+      link: '/blog'
+
     },
     {
       id: 2,
       src: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=800&fit=crop",
       alt: "Network Architecture",
-      title: "Network Security"
+      title: "Network Security",
+      link: '/blog'
     },
     {
       id: 3,
       src: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=800&fit=crop",
       alt: "Blockchain Technology",
-      title: "Blockchain Security"
+      title: "Blockchain Security",
+      link: '/blog'
     },
     {
       id: 4,
       src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=800&fit=crop",
       alt: "Cloud Infrastructure",
-      title: "Cloud Computing"
+      title: "Cloud Computing",
+      link: '/blog'
     },
     {
       id: 5,
       src: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=800&fit=crop",
       alt: "Quantum Computing",
-      title: "Quantum Cryptography"
+      title: "Quantum Cryptography",
+      link: '/blog'
+
     },
     {
       id: 6,
       src: "https://images.unsplash.com/photo-1750218537952-0ae056c7f53a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8",
       alt: "IoT Devices",
-      title: "IoT Security"
+      title: "IoT Security",
+      link: '/blog'
     },
     {
       id: 7,
       src: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=800&fit=crop",
       alt: "Data Protection",
-      title: "Data Security"
+      title: "Data Security",
+      link: '/blog'
     }
   ];
 
@@ -67,7 +77,14 @@ const ThreeDImageListSlider = () => {
   };
 
   // Click on specific image to make it active
-  const handleImageClick = (index) => {
+  const handleImageClick = (index, e) => {
+    // If clicking on the active image, allow the link to work
+    if (index === activeIndex) {
+      return; // Let the Link handle the navigation
+    }
+
+    // If clicking on inactive image, prevent navigation and just set as active
+    e.preventDefault();
     setActiveIndex(index);
   };
 
@@ -144,11 +161,12 @@ const ThreeDImageListSlider = () => {
         {/* Images Container - Increased Perspective for Better 3D Effect */}
         <div className="relative h-full flex items-center justify-center" style={{ perspective: '1500px' }}>
           {images.map((image, index) => (
-            <div
+            <Link
               key={image.id}
-              className="absolute cursor-pointer transition-all duration-700 ease-out"
+              to={image.link}
+              className="absolute cursor-pointer transition-all duration-700 ease-out block"
               style={getTransformStyle(index)}
-              onClick={() => handleImageClick(index)}
+              onClick={(e) => handleImageClick(index, e)}
             >
               <div className="relative group">
                 <img
@@ -171,7 +189,7 @@ const ThreeDImageListSlider = () => {
                   </div>
                 )}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -181,7 +199,7 @@ const ThreeDImageListSlider = () => {
         {images.map((_, index) => (
           <button
             key={index}
-            onClick={() => handleImageClick(index)}
+            onClick={() => setActiveIndex(index)}
             className={`w-4 h-4 rounded-full transition-all duration-300 ${index === activeIndex
               ? 'bg-gradient-to-r from-blue-600 to-purple-600 scale-125'
               : 'bg-gray-300 hover:bg-gray-400'

@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { FaPhoneAlt, FaBars, FaTimes, FaChevronDown, FaSearch, FaRegNewspaper } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import { menuItems } from './data';
+
+const menuItems = [
+    { name: 'Services', submenu: ['Property Valuation', 'Buying & Selling', 'Rental Management', 'Investment Advisory'] },
+    { name: 'Properties', submenu: ['Residential', 'Commercial', 'Land', 'Luxury Homes', 'New Developments'] },
+    { name: 'Insights', submenu: ['Market Trends', 'Guides & Articles', 'Client Stories'] },
+    { name: 'About Us', submenu: ['Our Story', 'Our Team', 'Careers', 'Contact Us'] },
+    { name: 'Media' },
+];
 
 
 // For demo purposes, using an anchor tag. In a real app, you'd use react-router-dom Link

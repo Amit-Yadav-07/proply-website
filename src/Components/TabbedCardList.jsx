@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, Clock, Eye, Play, Headphones } from 'lucide-
 import { tabbedCardListData, mediaTypes } from './data.js';
 
 const TabbedCardList = () => {
-  const [activeTab, setActiveTab] = useState('research');
+  const [activeTab, setActiveTab] = useState('Commercial');
   const scrollContainerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -75,19 +75,18 @@ const TabbedCardList = () => {
       {/* Tab Navigation */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">
-          Latest Content
+          Latest Projects
         </h2>
-        
+
         <div className="flex bg-white rounded-xl p-2 shadow-lg border border-gray-200/50">
           {tabbedCardListData.map((tab) => (
             <button
               key={tab.id}
               onClick={() => handleTabChange(tab.id)}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                activeTab === tab.id
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
-                  : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-              }`}
+              className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeTab === tab.id
+                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
+                : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                }`}
             >
               <span className="text-lg">{tab.icon}</span>
               <span className="hidden sm:inline">{tab.title}</span>
@@ -102,11 +101,10 @@ const TabbedCardList = () => {
         <button
           onClick={scrollLeft}
           disabled={!canScrollLeft}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg border border-gray-200 transition-all duration-300 ${
-            canScrollLeft
-              ? 'bg-white hover:bg-blue-50 text-gray-700 hover:text-blue-600 hover:border-blue-300'
-              : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-          }`}
+          className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg border border-gray-200 transition-all duration-300 ${canScrollLeft
+            ? 'bg-white hover:bg-blue-50 text-gray-700 hover:text-blue-600 hover:border-blue-300'
+            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+            }`}
         >
           <ChevronLeft className="w-6 h-6 mx-auto" />
         </button>
@@ -114,11 +112,10 @@ const TabbedCardList = () => {
         <button
           onClick={scrollRight}
           disabled={!canScrollRight}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg border border-gray-200 transition-all duration-300 ${
-            canScrollRight
-              ? 'bg-white hover:bg-blue-50 text-gray-700 hover:text-blue-600 hover:border-blue-300'
-              : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-          }`}
+          className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg border border-gray-200 transition-all duration-300 ${canScrollRight
+            ? 'bg-white hover:bg-blue-50 text-gray-700 hover:text-blue-600 hover:border-blue-300'
+            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+            }`}
         >
           <ChevronRight className="w-6 h-6 mx-auto" />
         </button>
@@ -133,9 +130,8 @@ const TabbedCardList = () => {
             {cards.map((card, index) => (
               <div
                 key={card.id}
-                className={`flex-shrink-0 bg-white rounded-2xl shadow-lg border border-gray-200/50 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group ${
-                  index === 3 ? 'w-72 opacity-60' : 'w-80'
-                }`}
+                className={`flex-shrink-0 bg-white rounded-2xl shadow-lg border border-gray-200/50 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group ${index === 3 ? 'w-72 opacity-60' : 'w-80'
+                  }`}
               >
                 {/* Card Image */}
                 <div className="relative h-48 overflow-hidden">

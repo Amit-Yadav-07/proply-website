@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu, X, ArrowRight, Users, Building, Briefcase, Phone, Shield, Zap, Facebook, Twitter, Instagram, Linkedin, Youtube, Mail } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, Users, Building, Briefcase, Phone, Shield, Zap, Mail, MailOpen } from "lucide-react";
+import { menuItems, socialLinks } from "./data";
 
 // Enhanced delay utility with better state management
 function useDelayedState(timeoutMs = 150) {
@@ -19,157 +20,6 @@ function useDelayedState(timeoutMs = 150) {
     };
     return [state, show, hide, instantHide];
 }
-
-// Professional menu data with icons and descriptions
-const menuItems = [
-    {
-        title: "Products",
-        icon: Shield,
-        subMenu: [
-            {
-                heading: "Security Solutions",
-                description: "Enterprise-grade security tools",
-                items: [
-                    {
-                        title: "Identity Management",
-                        description: "Secure user authentication & authorization",
-                        icon: Users,
-                        subMenu: ["Single Sign-On", "Multi-Factor Auth", "Identity Analytics"]
-                    },
-                    {
-                        title: "Data Protection",
-                        description: "Encrypt and secure your data",
-                        icon: Shield
-                    },
-                ],
-            },
-            {
-                heading: "Performance Tools",
-                description: "Optimize your infrastructure",
-                items: [
-                    {
-                        title: "Cloud Analytics",
-                        description: "Real-time performance insights",
-                        icon: Zap,
-                        subMenu: ["Monitoring Dashboard", "Custom Alerts", "API Analytics"]
-                    },
-                    {
-                        title: "Load Balancing",
-                        description: "Distribute traffic efficiently",
-                        icon: Building
-                    },
-                ],
-            },
-        ],
-        featured: {
-            title: "New: AI-Powered Security",
-            description: "Revolutionary threat detection using machine learning algorithms",
-            image: "🛡️",
-            link: "#"
-        }
-    },
-    {
-        title: "Solutions",
-        icon: Building,
-        subMenu: [
-            {
-                heading: "By Industry",
-                description: "Tailored solutions for your sector",
-                items: [
-                    {
-                        title: "Financial Services",
-                        description: "Banking & fintech solutions",
-                        icon: Building
-                    },
-                    {
-                        title: "Healthcare",
-                        description: "HIPAA-compliant tools",
-                        icon: Shield,
-                        subMenu: ["Patient Data Security", "Compliance Tools", "Integration APIs"]
-                    },
-                ],
-            },
-            {
-                heading: "By Company Size",
-                description: "Scale with your business",
-                items: [
-                    {
-                        title: "Enterprise",
-                        description: "For large organizations",
-                        icon: Building
-                    },
-                    {
-                        title: "SMB",
-                        description: "Small to medium business",
-                        icon: Users,
-                        subMenu: ["Starter Package", "Growth Plan", "24/7 Support"]
-                    },
-                ],
-            },
-        ],
-        featured: {
-            title: "Customer Success Story",
-            description: "How TechCorp increased security by 300% with our platform",
-            image: "📊",
-            link: "#"
-        }
-    },
-    {
-        title: "Resources",
-        icon: Briefcase,
-        subMenu: [
-            {
-                heading: "Learn",
-                description: "Knowledge base & tutorials",
-                items: [
-                    {
-                        title: "Documentation",
-                        description: "Complete API reference",
-                        icon: Shield
-                    },
-                    {
-                        title: "Tutorials",
-                        description: "Step-by-step guides",
-                        icon: Users
-                    },
-                ],
-            },
-            {
-                heading: "Support",
-                description: "Get help when you need it",
-                items: [
-                    {
-                        title: "Help Center",
-                        description: "FAQs and troubleshooting",
-                        icon: Phone
-                    },
-                    {
-                        title: "Community",
-                        description: "Connect with other users",
-                        icon: Users
-                    },
-                ],
-            },
-        ],
-        featured: {
-            title: "Weekly Webinar",
-            description: "Join us for 'Advanced Security Patterns' this Thursday",
-            image: "🎥",
-            link: "#"
-        }
-    },
-    { title: "Pricing", icon: Zap },
-    { title: "Contact", icon: Phone },
-];
-
-// Social media links
-const socialLinks = [
-    { name: "Facebook", icon: Facebook, href: "#", color: "hover:text-blue-600" },
-    // { name: "Twitter", icon: Twitter, href: "#", color: "hover:text-blue-400" },
-    { name: "Instagram", icon: Instagram, href: "#", color: "hover:text-pink-500" },
-    { name: "LinkedIn", icon: Linkedin, href: "#", color: "hover:text-blue-700" },
-    // { name: "YouTube", icon: Youtube, href: "#", color: "hover:text-red-500" },
-];
 
 export default function EnhancedTwoSectionNavbar() {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -214,16 +64,16 @@ export default function EnhancedTwoSectionNavbar() {
     return (
         <>
             {/* Top Section - Contact Info, Logo, and Social Icons */}
-            <div className=" bg-white/50 text-black border-b border-gray-800 p-2">
+            <div className=" bg-white/50 text-black p-2">
                 <div className="max-w-7xl mx-auto px-4 lg:px-8">
                     <div className="flex items-center justify-between h-12">
                         {/* Left - Contact Info */}
                         <div className="flex items-center space-x-6 text-sm">
-                            <div className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200">
-                                <Mail className="w-5 h-5" />
+                            <div className="flex items-center space-x-2 text-black hover:text-black transition-colors duration-200">
+                                <MailOpen className="w-5 h-5" />
                                 {/* <span className="hidden sm:inline">hello@securepro.com</span> */}
                             </div>
-                            <div className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200">
+                            <div className="flex items-center space-x-2 text-black hover:text-black transition-colors duration-200">
                                 <Phone className="w-5 h-5" />
                                 {/* <span className="hidden sm:inline">+1 (555) 123-4567</span> */}
                             </div>
@@ -248,7 +98,7 @@ export default function EnhancedTwoSectionNavbar() {
                                         key={social.name}
                                         href={social.href}
                                         aria-label={social.name}
-                                        className={`w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 backdrop-blur-sm text-gray-400 transition-all duration-300 hover:bg-white/10 hover:scale-110 ${social.color}`}
+                                        className={`w-8 h-10 flex items-center justify-center rounded-lg bg-white/5 backdrop-blur-sm text-black transition-all duration-300 hover:bg-white/10 hover:scale-110 ${social.color}`}
                                     >
                                         <IconComponent className="w-4 h-4" />
                                     </a>
@@ -366,7 +216,7 @@ export default function EnhancedTwoSectionNavbar() {
                                                                             <ItemIcon className="w-5 h-5 text-blue-600" />
                                                                         </div>
                                                                         <div className="flex-1 ">
-                                                                            <div className="flex items-center justify-between bg-red-400">
+                                                                            <div className="flex items-center justify-between">
                                                                                 <span className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                                                                                     {item.title}
                                                                                 </span>
@@ -380,7 +230,7 @@ export default function EnhancedTwoSectionNavbar() {
                                                                 </button>
 
                                                                 {/* Third level submenu - Enhanced */}
-                                                                {item.subMenu && openSubmenu === item.title && (
+                                                                {/* {item.subMenu && openSubmenu === item.title && (
                                                                     <div className="absolute left-full top-0 ml-6 w-72 rounded-2xl shadow-2xl border border-gray-200 p-6 z-[100]"
                                                                         style={{ animation: 'slideInRight 0.3s ease-out' }}>
                                                                         <div className="space-y-2">
@@ -395,7 +245,7 @@ export default function EnhancedTwoSectionNavbar() {
                                                                             ))}
                                                                         </div>
                                                                     </div>
-                                                                )}
+                                                                )} */}
                                                             </div>
                                                         );
                                                     })}
