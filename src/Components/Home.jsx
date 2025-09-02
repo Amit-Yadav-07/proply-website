@@ -13,17 +13,12 @@ const Home = () => {
     return (
         <>
 
-            <EnhancedTwoSectionNavbar />
+            {/* <EnhancedTwoSectionNavbar /> */}
             <Carousel />
             <TabbedCardList />
             <ServicesCardList />
             <ThreeDImageListSlider />
             <Testimonials />
-            <Footer />
-
-
-
-
 
         </>
     )

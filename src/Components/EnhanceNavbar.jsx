@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown, Menu, X, ArrowRight, Users, Building, Briefcase, Phone, Shield, Zap, Mail, MailOpen } from "lucide-react";
 import { menuItems, socialLinks } from "./data";
+import Logo from '../assets/proplyy-logo.png'
+import whiteLogo from '../assets/proplyy-white-logo.png'
+import { Link } from 'react-router-dom'
 
 // Enhanced delay utility with better state management
 function useDelayedState(timeoutMs = 150) {
@@ -81,12 +84,13 @@ export default function EnhancedTwoSectionNavbar() {
 
                         {/* Center - Logo */}
                         <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-lg">
+                            {/* <div className="w-8 h-8 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-lg">
                                 <Shield className="w-5 h-5 text-white" />
                             </div>
                             <div className="font-bold text-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                Proplyy
-                            </div>
+                                {Logo}
+                            </div> */}
+                            <Link><img src={Logo} className="h-[1.8rem] object-fit-contain" alt="" /></Link>
                         </div>
 
                         {/* Right - Social Icons */}
@@ -117,13 +121,14 @@ export default function EnhancedTwoSectionNavbar() {
                         {/* Mobile Brand & Menu Button */}
                         <div className="flex items-center justify-between lg:hidden w-[100%]">
 
-                            <div className="flex items-center space-x-2 ">
-                                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                            <div className="flex items-center space-x-2">
+                                {/* <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                                     <Shield className="w-5 h-5 text-white" />
-                                </div>
-                                <div className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                </div> */}
+                                {/* <div className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                                     Proplyy
-                                </div>
+                                </div> */}
+                                <img src={Logo} className="h-[1.4rem] object-fit-contain" alt="" />
                             </div>
 
                             <button
@@ -140,11 +145,12 @@ export default function EnhancedTwoSectionNavbar() {
                         <div className="hidden lg:flex items-center justify-center flex-1">
                             <div className="flex items-center space-x-1">
                                 {menuItems.map((item, idx) => {
+                                    console.log(item.link)
                                     const IconComponent = item.icon;
                                     return (
                                         <div key={item.title} className="relative">
-                                            <button
-                                                className="flex items-center space-x-2 px-5 py-3 rounded-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 font-medium group"
+                                            <Link to={item?.link}
+                                                className="flex items-center  space-x-2 px-5 py-3 rounded-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 font-medium group"
                                                 onMouseEnter={() => item.subMenu && handleMenuEnter(idx)}
                                                 onMouseLeave={() => item.subMenu && hideDropdown()}
                                                 onFocus={() => item.subMenu && handleMenuEnter(idx)}
@@ -157,7 +163,7 @@ export default function EnhancedTwoSectionNavbar() {
                                                     <ChevronDown className={`w-4 h-4 transition-all duration-300 ${openIndex && submenuParent === idx ? 'rotate-180 text-blue-600' : 'group-hover:text-blue-600'
                                                         }`} />
                                                 )}
-                                            </button>
+                                            </Link>
                                         </div>
                                     );
                                 })}
@@ -291,14 +297,15 @@ export default function EnhancedTwoSectionNavbar() {
                 <div className="bg-gradient-to-r from-slate-900 via-gray-900 to-slate-900 text-white p-6">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                            {/* <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
                                 <Shield className="w-6 h-6 text-white" />
-                            </div>
+                            </div> */}
                             <div>
-                                <div className="font-bold text-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                                <img src={whiteLogo} className="h-[1.4rem] object-fit-contain" alt="" />
+                                {/* <div className="font-bold text-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                                     Proplyy
-                                </div>
-                                <div className="text-xs text-gray-400">Professional Security Solutions</div>
+                                </div> */}
+                                {/* <div className="text-xs text-gray-400">Professional Security Solutions</div> */}
                             </div>
                         </div>
                         <button

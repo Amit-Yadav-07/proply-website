@@ -138,8 +138,8 @@ export const menuItems = [
       link: "#"
     }
   },
-  { title: "About", icon: Zap },
-  { title: "Contact", icon: Phone },
+  { title: "About", icon: Zap, link: '/about' },
+  { title: "Contact", icon: Phone,link:'/contact' },
 ];
 
 
