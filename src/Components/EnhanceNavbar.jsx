@@ -42,6 +42,11 @@ export default function EnhancedTwoSectionNavbar() {
         setSubmenuParent(idx);
     };
 
+    // Close mobile menu function
+    const closeMobileMenu = () => {
+        setMobileOpen(false);
+    };
+
     // Close mobile menu on escape
     useEffect(() => {
         if (!mobileOpen) return;
@@ -128,7 +133,9 @@ export default function EnhancedTwoSectionNavbar() {
                                 {/* <div className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                                     Proplyy
                                 </div> */}
-                                <img src={Logo} className="h-[1.4rem] object-fit-contain" alt="" />
+                                <Link to="/" onClick={closeMobileMenu}>
+                                    <img src={Logo} className="h-[1.4rem] object-fit-contain" alt="" />
+                                </Link>
                             </div>
 
                             <button
@@ -301,7 +308,9 @@ export default function EnhancedTwoSectionNavbar() {
                                 <Shield className="w-6 h-6 text-white" />
                             </div> */}
                             <div>
-                                <img src={whiteLogo} className="h-[1.4rem] object-fit-contain" alt="" />
+                                <Link to="/" onClick={closeMobileMenu}>
+                                    <img src={whiteLogo} className="h-[1.4rem] object-fit-contain" alt="" />
+                                </Link>
                                 {/* <div className="font-bold text-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                                     Proplyy
                                 </div> */}
@@ -348,9 +357,10 @@ export default function EnhancedTwoSectionNavbar() {
                     </div>
                 </div>
 
-                <div className="h-full overflow-y-auto p-6">
+                <div className="h-full overflow-y-auto p-6 bg-white">
                     <div className="space-y-4">
                         {menuItems.map((item, idx) => {
+                            console.log(item.link)
                             const IconComponent = item.icon;
                             return (
                                 <details key={item.title} className="group">
@@ -358,7 +368,13 @@ export default function EnhancedTwoSectionNavbar() {
                                         <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center">
                                             <IconComponent className="w-4 h-4 text-blue-600" />
                                         </div>
-                                        <span className="font-semibold text-gray-900 flex-1">{item.title}</span>
+                                        <Link
+                                            to={item.link}
+                                            className="font-semibold text-gray-900 flex-1"
+                                            onClick={closeMobileMenu}
+                                        >
+                                            {item.title}
+                                        </Link>
                                         {item.subMenu && <ChevronDown className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300" />}
                                     </summary>
                                     {item.subMenu && (
@@ -377,12 +393,14 @@ export default function EnhancedTwoSectionNavbar() {
                                                             {subItem.subMenu && (
                                                                 <div className="ml-4 mt-2 space-y-2">
                                                                     {subItem.subMenu.map((childItem) => (
-                                                                        <button
+                                                                        <Link
                                                                             key={childItem}
+                                                                            to={childItem.link || '#'}
                                                                             className="block w-full text-left p-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-300"
+                                                                            onClick={closeMobileMenu}
                                                                         >
                                                                             {childItem}
-                                                                        </button>
+                                                                        </Link>
                                                                     ))}
                                                                 </div>
                                                             )}
